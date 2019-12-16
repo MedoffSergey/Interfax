@@ -1,20 +1,20 @@
 <template>
 <div id="app">
   <Loading v-if='loading==true' />
-  <Navbar  />
-  <Controllers  :data="data"/>
-  <Models />
-  
+  <Navbar :data="data" />
+  <Controllers  :data="data" />
+  <Models :data="data" />
+
 </div>
 </template>
 
 <script>
 import axios from 'axios'; // Импортируем axios для связи с Бэкендом
 
-import Navbar from './components/Navbar'
-import Controllers from './components/Controllers'
+import Navbar from './components/navbar/Navbar'
+import Controllers from './components/controller/Controllers'
 import Models from './components/Models'
-import Loading from './components/Loading'
+import Loading from './components/loading/Loading'
 
 
 export default {

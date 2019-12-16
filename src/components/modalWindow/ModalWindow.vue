@@ -2,6 +2,7 @@
   <transition name="modal-fade">
     <div class="modal-backdrop" role="dialog">
       <div class="modal" ref="modal">
+        
         <header class="modal-header">
           <slot name="header">
             <div class="header__title"> Available authorizations </div>
@@ -15,13 +16,13 @@
         <section class="modal-body">
           <slot name="body">
               <div class=bearer>
-                Bearer  (apiKey)
+                Bearer ({{data.securityDefinitions.Bearer.type}})
               </div>
-              <p>JWT Authorization header using the Bearer scheme. Example: “Authorization: Bearer {token}”</p>
-              <p>Name: Authorization</p>
-              <p>In: header</p>
-              <p>Value:</p>
-              <input type="text" name="" value="">
+              <p>{{data.securityDefinitions.Bearer.description}}</p>
+              <p>Name: {{data.securityDefinitions.Bearer.name}}</p>
+              <p>in: {{data.securityDefinitions.Bearer.in}}</p>
+              <p class='input__value'>Value:</p>
+              <input v-model='inputText' type="text" name="" value="">
           </slot>
         </section>
 
@@ -46,9 +47,12 @@
 
 <script>
 export default {
+  props: ['data'],
   name: 'modal',
   data() {
-    return {}
+    return {
+      inputText: ''
+    }
   },
   methods: {
     close(event) {
@@ -168,6 +172,14 @@ input {
 p {
   font-size: 12px;
   margin: 0 0 5px;
+  color: #3b4151;
+}
+
+.input__value{
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 5px;
+  font-family: Titillium Web,sans-serif;
   color: #3b4151;
 }
 </style>
